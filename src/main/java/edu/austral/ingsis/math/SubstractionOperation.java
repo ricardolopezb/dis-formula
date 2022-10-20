@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public class SubstractionOperation implements Function {
@@ -24,11 +25,17 @@ public class SubstractionOperation implements Function {
 
     @Override
     public String print() {
-        return f1.print() + " - " + f2.print();
+        return "(" + f1.print() + " - " + f2.print() + ")";
     }
 
     @Override
     public boolean isVariable() {
         return false;
+    }
+
+    @Override
+    public void listVariables(List<String> variables) {
+        f1.listVariables(variables);
+        f2.listVariables(variables);
     }
 }

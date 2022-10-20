@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public interface Function {
@@ -8,4 +9,5 @@ public interface Function {
     double calculateWithValue(Map<String, Double> values);
     String print();
     boolean isVariable();
+    void listVariables(List<String> variables);
 }

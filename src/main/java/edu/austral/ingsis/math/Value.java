@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public class Value implements Function{
@@ -21,11 +22,16 @@ public class Value implements Function{
 
     @Override
     public String print() {
-        return String.valueOf(this.value);
+        return String.valueOf((int)this.value);
     }
 
     @Override
     public boolean isVariable() {
         return false;
+    }
+
+    @Override
+    public void listVariables(List<String> variables) {
+
     }
 }

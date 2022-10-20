@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public class Variable implements Function {
@@ -27,5 +28,10 @@ public class Variable implements Function {
     @Override
     public boolean isVariable() {
         return true;
+    }
+
+    @Override
+    public void listVariables(List<String> variables) {
+        if(!variables.contains(this.word)) variables.add(this.word);
     }
 }

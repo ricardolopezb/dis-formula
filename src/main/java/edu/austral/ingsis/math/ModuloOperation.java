@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public class ModuloOperation implements Function{
@@ -27,5 +28,11 @@ public class ModuloOperation implements Function{
     @Override
     public boolean isVariable() {
         return false;
+    }
+
+    @Override
+    public void listVariables(List<String> variables) {
+        f1.listVariables(variables);
+
     }
 }

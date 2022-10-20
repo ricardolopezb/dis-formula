@@ -1,5 +1,6 @@
 package edu.austral.ingsis.math;
 
+import java.util.List;
 import java.util.Map;
 
 public class PowerOperation implements Function{
@@ -29,5 +30,11 @@ public class PowerOperation implements Function{
     @Override
     public boolean isVariable() {
         return false;
+    }
+
+    @Override
+    public void listVariables(List<String> variables) {
+        f1.listVariables(variables);
+        f2.listVariables(variables);
     }
 }
