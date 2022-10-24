@@ -1,5 +1,6 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.composite;
 
+import edu.austral.ingsis.math.composite.*;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -58,7 +59,7 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction6() {
-        final Double result = new ModuloOperation(new Value(136)).calculate();
+        final Double result = new AbsoluteValueOperation(new Value(136)).calculate();
         assertThat(result, equalTo(136d));
     }
 
@@ -67,7 +68,7 @@ public class ResolutionTest {
      */
     @Test
     public void shouldResolveSimpleFunction7() {
-        final Double result =  new ModuloOperation(new Value(-136)).calculate();
+        final Double result =  new AbsoluteValueOperation(new Value(-136)).calculate();
 
         assertThat(result, equalTo(136d));
     }

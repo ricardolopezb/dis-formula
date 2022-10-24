@@ -1,5 +1,9 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.visitor;
 
+
+import edu.austral.ingsis.math.visitor.functions.*;
+import edu.austral.ingsis.math.visitor.visitors.CalculateVisitor;
+import edu.austral.ingsis.math.visitor.visitors.Visitor;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -18,7 +22,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction1() {
         Map<String, Double> map = new HashMap<>();
         map.put("x", 3d);
-        final Double result = new SumOperation(new Value(1), new Variable("x")).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new SumOperation(new Value(1), new Variable("x")).accept(visitor);
 
         assertThat(result, equalTo(4d));
     }
@@ -30,7 +36,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction2() {
         Map<String, Double> map = new HashMap<>();
         map.put("div", 4d);
-        final Double result = new DivisionOperation(new Value(12), new Variable("div")).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new DivisionOperation(new Value(12), new Variable("div")).accept(visitor);
 
         assertThat(result, equalTo(3d));
     }
@@ -43,7 +51,9 @@ public class ResolutionWithVariablesTest {
         Map<String, Double> map = new HashMap<>();
         map.put("x", 3d);
         map.put("y", 4d);
-        final Double result = new MultiplicationOperation(new DivisionOperation(new Value(9), new Variable("x")), new Variable("y")).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new MultiplicationOperation(new DivisionOperation(new Value(9), new Variable("x")), new Variable("y")).accept(visitor);
         assertThat(result, equalTo(12d));
     }
 
@@ -55,7 +65,9 @@ public class ResolutionWithVariablesTest {
         Map<String, Double> map = new HashMap<>();
         map.put("a", 9d);
         map.put("b", 3d);
-        final Double result = new PowerOperation(new DivisionOperation(new Value(27), new Variable("a")), new Variable("b")).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new PowerOperation(new DivisionOperation(new Value(27), new Variable("a")), new Variable("b")).accept(visitor);
 
         assertThat(result, equalTo(27d));
     }
@@ -67,7 +79,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction5() {
         Map<String, Double> map = new HashMap<>();
         map.put("z", 36d);
-        final Double result = new PowerOperation(new Variable("z"), new DivisionOperation(new Value(1), new Value(2))).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new PowerOperation(new Variable("z"), new DivisionOperation(new Value(1), new Value(2))).accept(visitor);
 
         assertThat(result, equalTo(6d));
     }
@@ -79,7 +93,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction6() {
         Map<String, Double> map = new HashMap<>();
         map.put("value", 8d);
-        final Double result = new SubstractionOperation(new ModuloOperation(new Value(8)), new Value(8)).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new SubstractionOperation(new AbsoluteValueOperation(new Value(8)), new Value(8)).accept(visitor);
         assertThat(result, equalTo(0d));
     }
 
@@ -90,7 +106,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction7() {
         Map<String, Double> map = new HashMap<>();
         map.put("value", 8d);
-        final Double result = new SubstractionOperation(new ModuloOperation(new Value(8)), new Value(8)).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new SubstractionOperation(new AbsoluteValueOperation(new Value(8)), new Value(8)).accept(visitor);
 
         assertThat(result, equalTo(0d));
     }
@@ -102,7 +120,9 @@ public class ResolutionWithVariablesTest {
     public void shouldResolveFunction8() {
         Map<String, Double> map = new HashMap<>();
         map.put("i", 2d);
-        final Double result = new MultiplicationOperation(new SubstractionOperation(new Value(5), new Variable("i")), new Value(8)).calculateWithValue(map);
+        final Visitor<Double> visitor = new CalculateVisitor(map);
+
+        final Double result = new MultiplicationOperation(new SubstractionOperation(new Value(5), new Variable("i")), new Value(8)).accept(visitor);
 
         assertThat(result, equalTo(24d));
     }

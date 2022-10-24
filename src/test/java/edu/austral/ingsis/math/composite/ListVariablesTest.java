@@ -1,12 +1,11 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.composite;
 
+import edu.austral.ingsis.math.composite.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -88,7 +87,7 @@ public class ListVariablesTest {
     @Test
     public void shouldListVariablesFunction6() {
         final List<String> result = new ArrayList<>();
-        final Function f = new SubstractionOperation(new ModuloOperation(new Variable("value")), new Value(8));
+        final Function f = new SubstractionOperation(new AbsoluteValueOperation(new Variable("value")), new Value(8));
         f.listVariables(result);
         assertThat(result, containsInAnyOrder("value"));
     }
@@ -99,7 +98,7 @@ public class ListVariablesTest {
     @Test
     public void shouldListVariablesFunction7() {
         final List<String> result = new ArrayList<>();
-        final Function f = new SubstractionOperation(new ModuloOperation(new Variable("value")), new Value(8));
+        final Function f = new SubstractionOperation(new AbsoluteValueOperation(new Variable("value")), new Value(8));
         f.listVariables(result);
 
         assertThat(result, containsInAnyOrder("value"));

@@ -1,29 +1,33 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.composite;
+
 
 import java.util.List;
 import java.util.Map;
 
-public class SquareRootOperation implements Function{
+public class SumOperation implements Function{
     private final Function f1;
+    private final Function f2;
 
-    public SquareRootOperation(Function f1) {
+    public SumOperation(Function f1, Function f2) {
         this.f1 = f1;
+        this.f2 = f2;
     }
 
 
     @Override
     public double calculate() {
-        return Math.sqrt(f1.calculate());
+        return f1.calculate() + f2.calculate();
     }
 
     @Override
     public double calculateWithValue(Map<String, Double> values) {
-        return Math.sqrt(f1.calculateWithValue(values));
+        return f1.calculateWithValue(values) + f2.calculateWithValue(values);
+
     }
 
     @Override
     public String print() {
-        return "sqrt(" + f1.print() + ")";
+        return f1.print() + " + " + f2.print() ;
     }
 
     @Override
@@ -34,5 +38,6 @@ public class SquareRootOperation implements Function{
     @Override
     public void listVariables(List<String> variables) {
         f1.listVariables(variables);
+        f2.listVariables(variables);
     }
 }

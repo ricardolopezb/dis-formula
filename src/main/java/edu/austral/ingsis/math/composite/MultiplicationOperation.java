@@ -1,31 +1,30 @@
-package edu.austral.ingsis.math;
+package edu.austral.ingsis.math.composite;
 
 import java.util.List;
 import java.util.Map;
 
-public class DivisionOperation implements Function{
+public class MultiplicationOperation implements Function{
     private final Function f1;
     private final Function f2;
 
-    public DivisionOperation(Function f1, Function f2) {
+    public MultiplicationOperation(Function f1, Function f2) {
         this.f1 = f1;
         this.f2 = f2;
     }
 
     @Override
     public double calculate() {
-        return f1.calculate()/ f2.calculate();
+        return f1.calculate() * f2.calculate();
     }
 
     @Override
     public double calculateWithValue(Map<String, Double> values) {
-        return f1.calculateWithValue(values)/ f2.calculateWithValue(values);
-
+        return f1.calculateWithValue(values) * f2.calculateWithValue(values);
     }
 
     @Override
     public String print() {
-        return "("+ f1.print() + " / " + f2.print() + ")";
+        return f1.print() + " * " + f2.print();
     }
 
     @Override
@@ -38,6 +37,4 @@ public class DivisionOperation implements Function{
         f1.listVariables(variables);
         f2.listVariables(variables);
     }
-
-
 }
